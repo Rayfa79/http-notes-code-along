@@ -1,0 +1,70 @@
+<h2>Template Driven From</h2>
+<div class="container">
+ <div class="row">
+  <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offser-2">
+    <!--email input-->
+    <form (ngSubmit)="onCreatePost(postForm.value)" #postForm="ngForm">
+
+     <div class="form-group">
+        <label for="title">Title</label>
+        <input
+        class="form-control"
+        type="text"
+        class="form-control"
+        id="title"
+        name="title"
+        ngModel
+        [(ngModel)]="returnedName"
+        >
+        <span class="help-block"></span>
+     </div>
+    <!--Dropdown input
+        1. set advanced as default
+        2. Use one way binding
+    -->
+     <div class="form-group">
+      <label for="content"></label>
+       <textarea name="content" class="form-control" id="content" rows="3" [(ngModel)]="returnedContent"></textarea>
+      </div>
+
+
+      <!--Warning message for whole form being touch and invalid-->
+
+
+      <button type="submit" class="btn btn-primary">Submit</button>
+      <hr>
+      <div class="row mb-5">
+
+        <button class="btn btn-primary" (click)="onFetchPosts()">
+            Fetch Posts
+        </button>
+
+        <button class="btn btn-danger">
+          Save Posts
+      </button>
+
+      </div>
+
+    </form>
+    <p *ngIf="!loadedPosts.length ">No Post Available</p>
+    <ul class="list-group" *ngIf="loadedPosts.length >= 1">
+      <li class="list-group-item" *ngFor="let post of loadedPosts">
+        <h1>{{post.name}}</h1>
+        <p>{{post.content}}</p>
+      </li>
+
+    </ul>
+
+
+    <div class="input-answers">
+      <p>{{returnedName}}</p>
+      <p>{{returnedContent}}</p>
+
+  </div>
+
+
+</div>
+</div>
+
+</div> <!--container-->
+
